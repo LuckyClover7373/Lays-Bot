@@ -7,7 +7,7 @@ prefix = "~"
 
 client = commands.Bot(command_prefix = f"{prefix}")
 
-token = os.environ["BOT_TOKEN"]
+token = os.environ["LAYSBOT_TOKEN"]
 
 @client.event
 async def on_ready():
