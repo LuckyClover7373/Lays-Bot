@@ -1,12 +1,13 @@
 import discord
 import random
 from discord.ext import commands
+import os
 
 prefix = "~"
 
 client = commands.Bot(command_prefix = f"{prefix}")
 
-token = "Nzk1MjU1ODkyODczNDQ1Mzk2.X_GtxA.bujlChBJ8pC4tetFZpKKY_8lwEI"
+token = os.environ["BOT_TOKEN"]
 
 @client.event
 async def on_ready():
