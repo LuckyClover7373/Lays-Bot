@@ -234,9 +234,25 @@ async def Help(ctx):
     embed.add_field(name=f"{prefix}지연시간", value="봇의 지연시간을 알려드립니다.", inline=False)
     embed.add_field(name=f"{prefix}청소", value="채팅방을 정한수만큼 청소해드립니다.", inline=False)
     embed.add_field(name=f"{prefix}주사위", value="1~6 사이의 숫자를 랜덤으로 줍니다.", inline=False)
-    embed.add_field(name=f"{prefix}레이스", value=str(prefix) + "레이스 (이름) (이름) ... (이름) 으로 레이스를 할수 있습니다", inline=False)
+    embed.add_field(name=f"{prefix}레이스", value=str(prefix) + "레이스 (이름) (이름) ... (이름) 으로 레이스를 할수 있습니다.", inline=False)
+    embed.add_field(name=f"{prefix}로딩", value=str(prefix) + "로딩 (로딩메세지) 형태로 사용가능하며 로딩되는 듯한 느낌이 들게 할수 있습니다.", inline=False)
     embed.set_footer(text="도움말이 끝났습니다.")
     await ctx.send(embed = embed)
+
+@client.command(aliases = ["로딩"])
+async def Loading(ctx, *, msg):
+    dot = 1
+    message = await ctx.send(msg + ".")
+    for i in range(1, 10):
+        dot += 1
+        if dot > 4:
+            dot = 1
+        dottext = ""
+        for v in range(1, dot):
+            dottext = dottext + "."
+        await message.edit(content = msg + dottext)
+        time.sleep(0.5)
+    await message.edit(content = msg + " 로딩 완료!")
 
 
 client.run(os.environ["token"])
